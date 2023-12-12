@@ -1,5 +1,59 @@
+const readline = require('readline');
 
-const array = [23, 56, 3, 45, 78, 99, 10];
+// Create an interface for reading from the console
+const rl = readline.createInterface({
+  input: process.stdin,
+  output: process.stdout
+});
+
+// Create an empty array
+let array = [];
+
+// Function for entering elements into the array
+function enterElements() {
+  function promptUser() {
+    rl.question('Enter a number from 0 to 100 (enter 0 to finish input): ', (input) => {
+      // Parse the input as an integer
+      let number = parseInt(input);
+
+      // Check if the entered number is valid
+      if (isNaN(number)) {
+        console.log('Invalid input. Please enter a valid number.');
+        promptUser();
+      } else if (number >= 0 && number <= 100) {
+        // If 0 is entered, finish input
+        if (number === 0) {
+          // Close the readline interface
+          rl.close();
+        } else {
+          // Add the element to the array
+          array.push(number);
+          // Prompt for the next input
+          promptUser();
+        }
+      } else {
+        console.log('The entered number is not in the range of 0 to 100.');
+        promptUser();
+      }
+    });
+  }
+
+  // Start prompting the user
+  promptUser();
+}
+
+// Call the function for entering elements
+enterElements();
+
+// Listen for the close event to ensure the readline interface is closed properly
+rl.on('close', () => {
+  // Display the array after input
+  console.log('Entered array:', array);
+});
+
+
+//The next step is to synchronize the code above and below
+
 
 //==========> Sorting
 const sortedArray = array.sort((a, b) => {
