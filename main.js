@@ -65,11 +65,11 @@ function enterElements() {
                 evenArray.push(number);
               } else {
                 oddArray.push(number);
-              }
+              } 
             });
 
-            console.log("Even numbers: ", evenArray.length);
-            console.log("Odd numbers: ", oddArray.length);
+            console.log("Even numbers are: ", evenArray, "and there are", evenArray.length);
+            console.log("Odd numbers: ",oddArray, "and there are", oddArray.length);
           } else {
             // Add the element to the array
             array.push(number);
